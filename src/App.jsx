@@ -1,13 +1,13 @@
 import React from 'react'
-import Navbar from './assets/components/Navbar'
+import Navbar from './assets/components/Navbar/Navbar.jsx'
 import { Outlet } from 'react-router-dom'
-import Footer from './assets/components/Footer'
+import Footer from './assets/components/Footer/Footer'
 
 const App = () => {
   return (
     <>
-    <Navbar/>
-    <div>Hotel Booking</div>
+    {/* <Navbar/> */}
+   
     <Outlet/>
     <Footer/>
     </>
