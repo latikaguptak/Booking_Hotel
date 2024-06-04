@@ -20,7 +20,7 @@
     font-weight: 500;
 }
 
-button{
+.navButton{
     background-color: #428bd0;
     border: 2px solid white;
     border-radius: 50px;
