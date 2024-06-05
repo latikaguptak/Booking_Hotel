@@ -5,6 +5,7 @@ import {DateRange} from 'react-date-range';
 import { useState } from "react";
 import'react-date-range/dist/styles.css';
 import'react-date-range/dist/theme/default.css';
+import {format} from 'date-fns';
 const Header = () => {
     const [date,setDate]= useState([
         {
@@ -56,7 +57,7 @@ const Header = () => {
             <div className="headerSearchItem">
                 <FaCalendar className="headerIcon"/>
                 <span className="headerSearchText">
-                    <span className="headerSearchText">Date-to-Date </span>
+                    <span className="headerSearchText"> {`${format(date[0].startDate, "mm/dd/yyyy")} to ${format(date[0].endDate, "mm/dd/yyyy")}`} </span>
                 </span>
                 <DateRange
                 editableDateInputs={true}
