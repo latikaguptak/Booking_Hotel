@@ -14,7 +14,7 @@ import { useState } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
-const Header = () => {
+const Header = ({type}) => {
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
     {
@@ -35,12 +35,12 @@ const Header = () => {
        ...prev,
         [name]: operation ==="i" ? option[name] +1 : option[name] -1,
     }
-  })
+  });
 }
   return (
     <>
       <div className="header">
-        <div className="headerContainer">
+        <div className={type === 'list' ? "headerContainer list" : "headerContainer "}>
           <div className="headerList">
             <div className="headerlistitem active">
               <FaBed />
@@ -63,7 +63,10 @@ const Header = () => {
               <span> Airport Taxis </span>
             </div>
           </div>
-          <h1 className="headerTitle"> Life is Simple Enjoyfull</h1>
+      {
+        type !=='list' &&
+        <>
+        <h1 className="headerTitle"> Life is Simple Enjoyfull</h1>
           <p className="headerDisc">Hotel Booking life ko kerde assan</p>
           <button className="headerBtn"> Signin / Register</button>
           <div className="headerSearch">
@@ -77,8 +80,8 @@ const Header = () => {
             </div>
             <div className="headerSearchItem">
               <BsPersonStanding className="headerIcon" />
-              <span className="headerSearchText">{`${option.adults}Adults . ${option.children}Children . ${option.room}Room`}</span>
-              <div className="option">
+              <span onClick={()=>setOpenOptions(!openOptions)} className="headerSearchText">{`${option.adults}Adults . ${option.children}Children . ${option.room}Room`}</span>
+              {openOptions && <div className="option">
                 <div className="optionItem">
                   <span className="optiontext" >Adults</span>
                   <div className="optionCounter">
@@ -91,7 +94,7 @@ const Header = () => {
                 <div className="optionItem">
                   <span className="optiontext" >Children</span>
                   <div className="optionCounter">
-                    <button disabled={option.children< 1} className="optionCounterButton" onClick={()=> handleOption("", "d")}>-</button>
+                    <button disabled={option.children< 1} className="optionCounterButton" onClick={()=> handleOption("children", "d")}>-</button>
                     <span className="optionCounterNumber">{option.children}</span>
                     <button disabled={option.children>15} className="optionCounterButton" onClick={()=> handleOption("children", "i")}>+</button>
                   </div>
@@ -105,6 +108,7 @@ const Header = () => {
                   </div>
                 </div>
               </div>
+              }
             </div>
             <div className="headerSearchItem">
               <FaCalendar className="headerIcon" />
@@ -113,9 +117,7 @@ const Header = () => {
                   onClick={() => setOpenDate(!openDate)}
                   className="headerSearchText"
                 >{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
-                    date[0].endDate,
-                    "MM/dd/yyyy"
-                  )}`}{" "}
+                    date[0].endDate,"MM/dd/yyyy")}`}
                 </span>
               </span>
               {openDate && (
@@ -132,9 +134,12 @@ const Header = () => {
               <button className="headerBtn">Search</button>
             </div>
           </div>
+        
+        </>
+          }
         </div>
-      </div>
-    </>
+    </div>
+  </>
   );
 };
 

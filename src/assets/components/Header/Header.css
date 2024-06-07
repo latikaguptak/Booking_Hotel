@@ -10,6 +10,10 @@
     max-width: 1024px;
     margin: 20px 0px 100px 0px;
 }
+
+.headerContainer.list{
+    margin:  20px 0px 0px 0px;
+}
 .headerList{
     display: flex;
     gap: 40px;
@@ -106,4 +110,8 @@
     color: #febb02;
     background-color: #ffffff;
     cursor: pointer;
+}
+
+.optionCounterButton:disabled{
+    cursor: not-allowed;
 }
