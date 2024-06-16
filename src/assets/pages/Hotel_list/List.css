@@ -17,6 +17,7 @@
     padding:20px;
     position: sticky;
     top: 10px;
+    height: max-content;
     
 }
 .lsTitle{
@@ -65,7 +66,7 @@ font-size: 12px;
 }
 .listSearch>button{
     padding: 10px;
-    background-color: #2970f5;
+    background-color: #428bd0;
     color: aliceblue;
     border: none;
     width: 100%;

@@ -25,7 +25,9 @@ const SearchItem = () => {
                 <button>8.9</button>
             </div>
             <div className='siDetailsTaxes'>
-                
+                <span className='siPrice'>$123</span>
+                <span className='siTaxOp'>Includes taxes and fees</span>
+                <button className='siCheckButton'>See avalability</button>
             </div>
         </div>
     

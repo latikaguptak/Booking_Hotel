@@ -31,7 +31,7 @@
 
 .siTaxiOp{
     font-size: 12px;
-    color: white;
+    color: rgb(233, 231, 231);
     background-color: #008009;
     width: max-content;
     padding: 3px;
@@ -50,6 +50,7 @@
     font-size: 12px;
     color:#008009;
     font-weight: bold;
+    
 }
 .siClassNameOpSubTitle{
     font-size: 12px;
@@ -58,4 +59,52 @@
 }
 .siDetails{
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+.siRatting{
+    display: flex;
+    justify-content: space-between;
+
+}
+.siRatting>span{
+    font-weight: 500;
+}
+.siRatting>button{
+    background-color: #003580;
+    color:aliceblue;
+    padding: 5px;
+    font-weight: bold;
+    border: none;
+
+}
+
+.siDetailsTaxes{
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.siPrice{
+    font-size: 24px;
+}
+
+.siTaxOp{
+    font-size: 12px;
+    color: #555555
+}
+
+.siCheckButton{
+    background-color: #428bd0;
+    color:white;
+    font-weight: bold;
+    padding: 10px 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
+
