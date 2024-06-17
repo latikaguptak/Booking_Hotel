@@ -42,7 +42,7 @@ const Hotel = () => {
         <div className='hotelContainer'>
           {open && <div className='hotelSlider'>
             <GoX onClick={()=>setOpen(false)} className='crossSlider'/>
-            <MdKeyboardDoubleArrowRight onClick={}/>
+            <MdKeyboardDoubleArrowRight />
             <div className='hotelSliderWrapper'>
               <img src={photos[slideNumber].src} alt="" className='hotelSliderImg'/>
               </div>

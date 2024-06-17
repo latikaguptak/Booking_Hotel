@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './assets/pages/Home/Home';
 import List from './assets/pages/Hotel_list/List';
 import Hotel from './assets/pages/Hotel_details/Hotel';
+import Auth from './assets/pages/Auth/Auth.jsx'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: '/Hotels/:id',
     element: <Hotel/>
+  },
+  {
+    path: '/auth',
+    element: <Auth/>
   }
 ])
   }
