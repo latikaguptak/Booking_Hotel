@@ -7,6 +7,7 @@ import Home from './assets/pages/Home/Home';
 import List from './assets/pages/Hotel_list/List';
 import Hotel from './assets/pages/Hotel_details/Hotel';
 import Auth from './assets/pages/Auth/Auth.jsx'
+import Register from './assets/components/Register/Register';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: '/auth',
     element: <Auth/>
+  },
+  {
+    path: '/Register',
+    element: <Register/>
   }
 ])
   }

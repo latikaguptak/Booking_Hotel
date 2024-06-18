@@ -1,0 +1,66 @@
+.login{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.Title{
+    font-size: 50px;
+    font-weight: inherit;
+    padding: 10px;
+    margin: 0px 0px 70px 50px;
+    
+    align-items: center;
+}
+.loginInputs{
+
+    border-bottom: 2px solid #ffffff;
+    margin: 20px 10px;
+    margin-left: -10px;
+
+    
+
+}
+.iconDisplay{
+    margin-left: 90px;
+    width: max-content;
+}
+
+.inputDesign{
+    border: none;
+    background-color: #001228;
+    outline: none;
+    color: #ffffff; 
+    width: max-content;   
+    font-size: 15px;
+}
+.loginReFor{
+    font-size: 12px;
+    display: flex;
+    margin: 0px 5px 0px 0px;
+}
+.loginRemember{
+    flex: 1;
+}
+
+
+.loginButton{
+    width: 50%;
+    padding: 15px;
+    height: 50px;
+    border-radius: 100px;
+    border: none;
+    background-color: #428bd0;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    font-weight: bold;
+    margin: 100px 0px 10px 50px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.auth-Register{
+    font-size: 14px;
+    margin:20px 10px;
+
+}
