@@ -42,6 +42,9 @@
 .loginRemember{
     flex: 1;
 }
+.loginForgotPassword{
+    color: #428bd0;
+}
 
 
 .loginButton{
@@ -51,7 +54,7 @@
     border-radius: 100px;
     border: none;
     background-color: #428bd0;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-size: 16px;
     font-weight: bold;
     margin: 100px 0px 10px 50px;
@@ -60,7 +63,12 @@
 }
 
 .auth-Register{
-    font-size: 14px;
-    margin:20px 10px;
+    font-size: 11px;
+    margin: 20px 20px;
+    align-items: center;
 
+}
+.RegisterLink{
+    color:#428bd0;
+    font-size: 14px;
 }

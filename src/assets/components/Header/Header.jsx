@@ -14,7 +14,9 @@ import { useState } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
+
+
 const Header = ({type}) => {
   const [destination, setDestination]=useState("")
   const [openDate, setOpenDate] = useState(false);
@@ -71,12 +73,13 @@ const handleSearch =() =>{
               <span> Airport Taxis </span>
             </div>
           </div>
+          
       {
         type !=='list' &&
         <>
         <h1 className="headerTitle"> Life is Simple Enjoyfull</h1>
           <p className="headerDisc">Hotel Booking life ko kerde assan</p>
-          <button className="headerBtn"> Signin / Register</button>
+          <Link to= '/login' className="headerBtn"> Signin / Register</Link>
           <div className="headerSearch">
             <div className="headerSearchItem">
               <FaBed className="headerIcon" />

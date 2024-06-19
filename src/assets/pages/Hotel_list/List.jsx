@@ -1,7 +1,7 @@
 import './List.css'
 import Navbar from './../../components/Navbar/Navbar';
 import Header from './../../components/Header/Header';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { DateRange } from 'react-date-range';
@@ -14,6 +14,9 @@ const List =() =>{
   const [openDate ,setOpenDate] = useState(false);
   const [option ,setOption] = useState(location.state.option);
   console.log(location);
+  const Hoteldetail=()=>{
+    Navigate ("/Hotels:id")
+  }
   return (
     <div>
       <Navbar/>
@@ -67,7 +70,7 @@ const List =() =>{
           </div>
           <button>Search</button>
           </div>
-          <div className='listResults'>
+          <div onClick={Hoteldetail} className='listResults'>
             <SearchItem/>
             <SearchItem/>
             <SearchItem/>

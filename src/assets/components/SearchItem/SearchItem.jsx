@@ -1,6 +1,10 @@
+import { Navigate } from 'react-router-dom'
 import './SearchItem.css'
 
 const SearchItem = () => {
+    const Hoteldetail=()=>{
+        Navigate ("/Hotels/:id")
+      }
   return (
     <div className='searchItem'>
         <img src='https://oimages.elitehavens.com/images/gallery/lowres/P00459/Villa%20Nimaya%20-%20Listing.jpg' 
@@ -27,7 +31,7 @@ const SearchItem = () => {
             <div className='siDetailsTaxes'>
                 <span className='siPrice'>$123</span>
                 <span className='siTaxOp'>Includes taxes and fees</span>
-                <button className='siCheckButton'>See avalability</button>
+                <button onClick={Hoteldetail} className='siCheckButton'>See avalability</button>
             </div>
         </div>
     

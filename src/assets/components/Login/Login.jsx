@@ -26,7 +26,7 @@ const Login = () => {
         Login
       </button>
       <div className="auth-Register">
-        <span className="auth-RegisterDisplay">Don't have an account yet?</span><Link to='/Register'> Sign Up </Link>
+        <span className="auth-RegisterDisplay">Don't have an account yet?</span><Link className="RegisterLink "to='/Register'> Sign Up </Link>
       </div>
       
     </div>

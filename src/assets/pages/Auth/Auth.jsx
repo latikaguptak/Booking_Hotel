@@ -1,15 +1,18 @@
 import './Auth.css'
 import hotelgirl from '../../../../public/hotel-girl.png'
 import Login from '../../components/Login/Login'
+import Register from '../../components/Register/Register'
 
 
-const Auth = () => {
+
+const Auth = ({type}) => {
+  
+
   return (
     <div className="auth-container">
             <div className="form-container">
                 <div className='form-ContainerDispaly'>
-                    <Login />
-
+                    {type==='true' ? <Login />:<Register/>}
                 </div>
                 
 

@@ -27,13 +27,14 @@ const router = createBrowserRouter([
     path: '/Hotels/:id',
     element: <Hotel/>
   },
+  
   {
-    path: '/auth',
-    element: <Auth/>
+    path: '/login',
+    element: <Auth type= 'true'/>
   },
   {
     path: '/Register',
-    element: <Register/>
+    element: <Auth type='false'/>
   }
 ])
   }

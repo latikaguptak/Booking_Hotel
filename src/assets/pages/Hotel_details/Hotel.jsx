@@ -7,6 +7,7 @@ import Footer from './../../components/Footer/Footer';
 import { useState } from 'react';
 import { GoX } from "react-icons/go";
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { Navigate } from 'react-router-dom';
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber]=useState(0);
@@ -35,6 +36,7 @@ const Hotel = () => {
     setOpen(!open);
     setSlideNumber(i);
   }
+ 
   return (
     <div className='Hotel'>
         <Navbar/>
