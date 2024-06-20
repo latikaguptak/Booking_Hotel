@@ -4,16 +4,32 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import "./Login.css";
 
 const Login = () => {
+  const handelSubmit = async(e) => {
+    e.preventDefault();
+    console.log("userdata", formData);
+    try {
+    const response = await axios.post("",Data)
+    console.log(response.data);
+    setFormData(initialValue)
+    }
+    catch (error) {
+      console.log(error);
+    }
+
+  }
+  const handlerChange = (e) => {
+    console.log(e.target.value);
+  }
   return (
     <div className="login">
       <h2 className="Title">Login</h2>
-      <form> 
+      <form onSubmit={handelSubmit}> 
       <div className="loginInputs">
-        <input type="text" placeholder="Username" className="inputDesign" />
+        <input type="text" placeholder="Username" className="inputDesign" onChange={handlerChange} required />
         <FaUser className="iconDisplay"/>
       </div>
       <div className="loginInputs">
-        <input type="password" placeholder="Password" className="inputDesign" />
+        <input type="password" placeholder="Password" className="inputDesign" onChange={handlerChange} required/>
         <RiLockPasswordLine className="iconDisplay"/>
       </div>
       </form>
