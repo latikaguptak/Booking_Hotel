@@ -5,14 +5,14 @@ import Register from '../../components/Register/Register'
 
 
 
-const Auth = ({type}) => {
+const Auth = ({authType}) => {
   
 
   return (
     <div className="auth-container">
             <div className="form-container">
                 <div className='form-ContainerDispaly'>
-                    {type==='true' ? <Login />:<Register/>}
+                    {authType==='true' ? <Login />:<Register/>}
                 </div>
                 
 
