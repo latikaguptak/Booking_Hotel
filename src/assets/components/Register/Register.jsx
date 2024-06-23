@@ -1,61 +1,124 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Register.css'
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
-const initialValues = {
-  username: "",
-  email: "",
-  password: "",
-}
+
 
 const Register = () => {
-  const [formData, setFormData] = useState(initialValues);
-  const handlerChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-  const handelSubmit =(e) => {
-    e.preventDefault();
-    console.log("userdata", formData);
-    try {
-    // const response = await axios.post("",Data)
-    // console.log(response.data);
-    console.log(formData);
-    setFormData(initialValues)
+  const { register, handleSubmit, formState:{errors}, reset} =useForm()
+  const navigate = useNavigate()
+  const apiUrl = import.meta.env.VITE_API_URL
+  const onSubmit = async(data) => {
+    try{
+      const response = await axios.post(`${apiUrl}/auth/register`,data);
+      console.log('response', response.data);
+      toast.success("Successfully registered !", {
+        autoClose: 5000, 
+      } );
+      reset();
+      navigate('/')
     }
-    catch (error) {
-      console.log(error);
-    }
-
+    catch{
+      toast.error("Something went wrong!", {
+        autoClose: 5000, // duration in milliseconds
+    } );
   }
+    
+};
+    
+  
   return (
     <div className='registerContainer'>
       <h1 className='regTitle'> Register</h1>
-      <form onSubmit={handelSubmit} >
+      <form onSubmit={handleSubmit(onSubmit)} >
         <div className='regInputs'>
-          <input type='text' placeholder='UserName/Email-id' className="inputDesign" name='username' required onChange={handlerChange} value={formData.username}/>
+          <input
+          {...register('username', {
+            required: "Enter your username",
+            minLength: {
+              value: 8,
+              message: "Please enter at least 8 characters"
+            },
+            maxLength:{
+              value: 15,
+              message: "Please enter at most 15 characters"
+            },
+            pattern: /^[a-zA-Z0-9]+$/,
+            message: "Please enter a valid username"
+          })}
+           type='text'
+           placeholder='username'
+           className="inputDesign" 
+           />
+          <FaUser
+           className="iconDisplay"
+           />
+        </div>
+        {
+          errors.username && (
+            <p className="error">{errors.username.message}</p>
+          )
+        }
+        <div className='regInputs'>
+          <input 
+          {...register('email', {
+            required: "Enter your email",
+            validate: (value) =>
+              {
+                if(!value.includes("@")) {
+                  return "Username includes @" 
+                }
+
+                return true
+              }
+            })
+          }
+          type='mail' 
+          placeholder='email' className="inputDesign"
+          />
           <FaUser className="iconDisplay"/>
         </div>
-        <div className='regInputs'>
-          <input type='mail' placeholder='Email-id' className="inputDesign" name='email' required onChange={handlerChange} value={formData.mail}/>
-          <FaUser className="iconDisplay"/>
-        </div>
+        {
+          errors.email && (
+            <p className="error">{errors.email.message}</p>
+          )
+        }
         
         <div className='regInputs'>
-          <input type='password' placeholder='New Password' className="inputDesign" name='password' required onChange={handlerChange} value={formData.password}/>
+          <input 
+          {...register('password',{
+            required: "Password is required",
+            minLength: {
+              value: 6,
+              message: "Password must be at least 6 characters",
+            },
+            maxLength: {
+              value: 12,
+              message: "Password must be at most 12 characters",
+            },
+
+          })}
+          type='password' 
+          placeholder='New Password' className="inputDesign" 
+            />
           <RiLockPasswordLine className="iconDisplay"/>
     
         </div>
-        
-      </form>
+        {
+          errors.password && (
+            <p className="error">{errors.password.message}</p>
+          )
+        }
       <button type="submit" className="registerButton">
         Register
       </button>
+        
+      </form>
+     
       <div className="auth-login">
         <span className="auth-LoginDisplay">You have an account </span><Link className="loginLink "to='/login'> Sign In </Link>
       </div>
