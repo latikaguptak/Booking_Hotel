@@ -9,7 +9,7 @@ import axios from 'axios';
 
 
 const Register = () => {
-  const { register, handleSubmit, formState:{errors}, reset} =useForm()
+  const { register, handleSubmit, formState:{errors}, reset, loading} =useForm()
   const navigate = useNavigate()
   const apiUrl = import.meta.env.VITE_API_URL
   const onSubmit = async(data) => {
@@ -113,7 +113,7 @@ const Register = () => {
             <p className="error">{errors.password.message}</p>
           )
         }
-      <button type="submit" className="registerButton">
+      <button disabled={loading} type="submit" className="registerButton">
         Register
       </button>
         

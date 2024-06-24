@@ -13,7 +13,7 @@ const List =() =>{
   const [date ,setDate] = useState(location.state.date);
   const [openDate ,setOpenDate] = useState(false);
   const [option ,setOption] = useState(location.state.option);
-  console.log(location);
+  // console.log(location);
   const Hoteldetail=()=>{
     Navigate ("/Hotels:id")
   }
