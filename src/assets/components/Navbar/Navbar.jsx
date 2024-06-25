@@ -7,8 +7,10 @@ const Navbar = () => {
     <>
     <div className="navbar">
         <div className="navContainer">
-          <p>Hotel Booking</p>
-            <span className="logo"></span>
+        
+          <Link to ="/">
+            <span className="logo">TheHotels.com</span>
+          </Link>
             <div className="navItems">
               <Link to='/Register' type="button" className="navButton">Register</Link>
               <Link to='/login' type="button" className="navButton">Login</Link>

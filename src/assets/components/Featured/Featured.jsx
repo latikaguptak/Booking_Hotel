@@ -3,13 +3,14 @@ import './featured.css'
 
 const Featured = () => {
   const { data, loading, error} = useFetch("/hotels/countByCity?cities=tokyo,osaka,japan")
-  console.log(data)
+  // console.log(data)
   return (
     <>
     <div className='featured'>
       {loading ? (<div className='Loading'>Loading...</div> ):(
       <>
-      <div className='featuredItems'>
+       
+         <div className='featuredItems'>
         <img src='https://images.pexels.com/photos/962989/pexels-photo-962989.jpeg?auto=compress&cs=tinysrgb&w=600' alt='' className='featuredImg'/>
         <div className='featuredTitle'>
           <h1>Dublin</h1>
@@ -35,6 +36,7 @@ const Featured = () => {
       </div>
       </>)}
 
+    
     </div>
     </>
   )
