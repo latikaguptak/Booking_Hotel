@@ -14,12 +14,17 @@ const List =() =>{
   const [date ,setDate] = useState(location.state.date);
   const [openDate ,setOpenDate] = useState(false);
   const [option ,setOption] = useState(location.state.option);
+  const [min ,setMin] = useState(undefined);
+  const [max ,setMax] = useState(undefined);
   // console.log(location);
   const Hoteldetail=()=>{
     Navigate ("/Hotels:id")
   }
-  const { data , loading, error, reFatch } = useFetch(`/hotels?city=${destination}`)
-  console.log(data)
+  const { data , loading, error, reFetch } = useFetch(`/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`)
+  console.log(data);
+  const handleClick = ()=>{
+    reFetch();
+  }
   return (
     <div>
       <Navbar/>
@@ -30,7 +35,7 @@ const List =() =>{
           <h1 className='lsTitle'> Search </h1>
           <div className='lsItem'>
             <label> Destination</label>
-            <input placeholder={destination} type="text" />
+            <input onChange={e=>setDestination(e.target.value)} placeholder={destination} type="text" />
           </div>
           <div className='lsItem'>
             <label>Check-in-Date</label>
@@ -45,15 +50,11 @@ const List =() =>{
             <div className='lsOption'>
             <div className='lsOptionItem'>
               <span className='lsOptionText' >Min Price <small>per night</small></span>
-              <input type='number' className='lsOptionInput'/>
-            </div>
-            <div className='lsOptionItem'>
-              <span className='lsOptionText' >Min Price <small>per night</small></span>
-              <input type='number' className='lsOptionInput'/>
+              <input onChange={e=>setMin((e.target.value)-1)} type='number' className='lsOptionInput'/>
             </div>
             <div className='lsOptionItem'>
               <span className='lsOptionText' >Max Price <small>per night</small></span>
-              <input type='number' className='lsOptionInput'/>
+              <input onChange={e=>setMax((e.target.value)+1)} type='number' className='lsOptionInput'/>
             </div>
             <div className='lsOptionItem'>
               <span className='lsOptionText' >Adults </span>
@@ -71,7 +72,7 @@ const List =() =>{
            </div>
            
           </div>
-          <button>Search</button>
+          <button onClick={handleClick}>Search</button>
           </div>
           <div onClick={Hoteldetail} className='listResults'>
             {loading ? <div className='loading'>Loading...</div> : (
