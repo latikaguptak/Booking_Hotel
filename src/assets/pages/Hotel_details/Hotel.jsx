@@ -4,22 +4,24 @@ import Header from './../../components/Header/Header';
 import { FaLocationDot } from "react-icons/fa6";
 import MailList from './../../components/MailList/MailList';
 import Footer from './../../components/Footer/Footer';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { GoX } from "react-icons/go";
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { useLocation } from 'react-router-dom';
 import useFetch from './../../hooks/useFetch';
+import { SearchContext } from '../../../context/SearchContext';
 
 const Hotel = () => {
   const location = useLocation();
-  console.log("location", location)
+  // console.log("location", location)
   const id = location.pathname.split("/")[2];
-  console.log('id', id);
+  // console.log('id', id);
 
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const { data, loading, error } = useFetch(`hotels/find/${id}`);
-  console.log('data', data);
+  const{dates, options} = useContext(SearchContext)
+  // console.log('dates', dates);
 
   const handleOpen = (i) => {
     setOpen(true);
@@ -30,14 +32,21 @@ const Hotel = () => {
     let newSlideNumber;
 
     if (direction === "left") {
-      newSlideNumber = slideNumber === 0 ? photos.length - 1 : slideNumber - 1;
+      newSlideNumber = slideNumber === 0 ? data.photos.length - 1 : slideNumber - 1;
     } else {
-      newSlideNumber = slideNumber === photos.length - 1 ? 0 : slideNumber + 1;
+      newSlideNumber = slideNumber === data.photos.length - 1 ? 0 : slideNumber + 1;
     }
 
     setSlideNumber(newSlideNumber);
   };
+  const MILLISECONDS = 1000 * 60 * 60 * 24;
+  const dayDifference = (date1, date2) => {
+    const timeDifference = Math.abs(date2.getTime() - date1.getTime());
+    const daysDifference = Math.ceil(timeDifference / MILLISECONDS);
+    return daysDifference;
 
+  }
+  const days=dayDifference(dates[0].startDate, dates[0].endDate);
   return (
     <div className='Hotel'>
       <Navbar />
@@ -87,13 +96,13 @@ const Hotel = () => {
               </div>
               <div className='hotelDetailsPrice'>
                 <h1>
-                  Perfect for a 9-night stay!
+                  Perfect for a {days} days stay!
                 </h1>
                 <span>
                   This property has an excellent rating of 9.8!
                 </span>
                 <h2>
-                  <b>$1000</b> (9 nights)
+                  <b>${days*data.cheapestPrice } /room </b>  <span>for {days} days </span>
                 </h2>
                 <button>Reserve or Book Now</button>
               </div>
@@ -103,6 +112,7 @@ const Hotel = () => {
           <Footer />
         </div>
       )}
+     
     </div>
   );
 }

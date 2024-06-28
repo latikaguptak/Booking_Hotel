@@ -1,5 +1,5 @@
 import "./Header.css";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaBed, FaCalendar, FaCar, FaHotel, FaPlane, FaTaxi } from "react-icons/fa";
 import { BsPersonStanding } from "react-icons/bs";
 import { DateRange } from "react-date-range";
@@ -7,11 +7,12 @@ import { format } from "date-fns";
 import { Link, useNavigate } from "react-router-dom";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { SearchContext } from "../../../context/SearchContext";
 
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
-  const [date, setDate] = useState([
+  const [dates, setDates] = useState([
     {
       startDate: new Date(),
       endDate: new Date(),
@@ -33,11 +34,12 @@ const Header = ({ type }) => {
   };
 
   const navigate = useNavigate();
-
+  
+  const {dispatch} = useContext(SearchContext)
   const handleSearch = () => {
-    navigate('/hotels', { state: { destination, date, option } });
+    dispatch({ type: 'NEW_SEARCH', payload: { destination, dates, option } });
+    navigate('/hotels', { state: { destination, dates, option } });
   };
-
   return (
     <>
       <div className="header">
@@ -118,14 +120,14 @@ const Header = ({ type }) => {
                 <div className="headerSearchItem">
                   <FaCalendar className="headerIcon" />
                   <span className="headerSearchText" onClick={() => setOpenDate(!openDate)}>
-                    {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`}
+                    {`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(dates[0].endDate, "MM/dd/yyyy")}`}
                   </span>
                   {openDate && (
                     <DateRange
                       editableDateInputs={true}
-                      onChange={(item) => setDate([item.selection])}
+                      onChange={(item) => setDates([item.selection])}
                       moveRangeOnFirstSelection={false}
-                      ranges={date}
+                      ranges={dates}
                       className="date"
                       minDate={new Date()}
                     />

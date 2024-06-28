@@ -7,7 +7,7 @@ import Home from './assets/pages/Home/Home';
 import List from './assets/pages/Hotel_list/List';
 import Hotel from './assets/pages/Hotel_details/Hotel';
 import Auth from './assets/pages/Auth/Auth.jsx'
-import SearchContextProvider from './context/SearchContext';
+import {SearchContextProvider }from './context/SearchContext';
 
 
 const router = createBrowserRouter([
