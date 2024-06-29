@@ -6,19 +6,34 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';  // Import CSS for toast notifications
 import { useForm } from 'react-hook-form';
 import axios from "axios";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../context/AuthContext";
 
 const Login = () => {
+  const {user, loading, error, dispatch}= useContext(AuthContext);
+  const [credentials, setCredentials] = useState({
+
+    username: 'undefined',
+    password: 'undefined',
+  
+  })
   const apiUrl = import.meta.env.VITE_API_URL;
   const navigate =useNavigate()
-  console.log("api:", apiUrl);
+  // console.log("api:", apiUrl);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
-
-  const onSubmit = async (data) => {
-    console.log(data);
+  const handleChange = (e)=>{
+    setCredentials({...credentials, [e.target.id]: e.target.value })
+  }
+  const onSubmit = async (data, e) => {
+    // console.log(data);
+    e.preventDefault();
+    dispatch({type:"LOGIN_START"})
     try {
       const response = await axios.post(`${apiUrl}/auth/login`, data);
-      console.log(response.data);
+      // console.log(response.data);
+      
+      dispatch({type:"LOGIN_SUCCESS", payload: response.data});
       toast.success("Login Successful", {
         autoClose: 5000, // duration in milliseconds
         
@@ -27,9 +42,11 @@ const Login = () => {
       navigate('/')
     } catch (error) {
       toast.error('Something went wrong');
+      dispatch({type:"LOGIN_FAILURE", payload:error.response.data});
     }
   };
-
+  console.log(user)  
+  
   return (
     <div className="login">
       <h2 className="Title">Login</h2>
@@ -41,7 +58,9 @@ const Login = () => {
             })}
             type="text"
             placeholder="Username"
-            className="inputDesign"
+            className="inputDesign" id="username"
+            onChange={handleChange}
+
           />
           <FaUser className="iconDisplay" />
         </div>
@@ -61,8 +80,9 @@ const Login = () => {
               },
             })}
             type="password"
-            placeholder="Password"
+            placeholder="Password" id = "password"
             className="inputDesign"
+            onChange={handleChange}
           />
           <RiLockPasswordLine className="iconDisplay" />
         </div>
@@ -76,9 +96,10 @@ const Login = () => {
             Forgot Password?
           </Link>
         </div>
-        <button type="submit" className="loginButton">
+        <button disabled={loading} type="submit" className="loginButton">
           Login
         </button>
+        {error && <span>error...</span>}
       </form> {/* Form element ends here */}
       <div className="auth-Register">
         <span className="auth-RegisterDisplay">

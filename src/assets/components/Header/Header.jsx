@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { SearchContext } from "../../../context/SearchContext";
+import { AuthContext } from "../../../context/AuthContext";
 
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
@@ -25,6 +26,7 @@ const Header = ({ type }) => {
     children: 0,
     room: 1,
   });
+  const {user}= useContext(AuthContext);
 
   const handleOption = (name, operation) => {
     setOption((prev) => ({
@@ -71,7 +73,7 @@ const Header = ({ type }) => {
             <>
               <h1 className="headerTitle"> Life is Simple Enjoyful</h1>
               <p className="headerDisc">Hotel Booking life ko kerde assan</p>
-              <Link to='/login' className="headerBtn"> Signin / Register</Link>
+              {!user&&<Link to='/login' className="headerBtn"> Signin / Register</Link>}
               <div className="headerSearch">
                 <div className="headerSearchItem">
                   <FaBed className="headerIcon" />

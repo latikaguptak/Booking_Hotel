@@ -41,12 +41,12 @@ const Hotel = () => {
   };
   const MILLISECONDS = 1000 * 60 * 60 * 24;
   const dayDifference = (date1, date2) => {
-    const timeDifference = Math.abs(date2.getTime() - date1.getTime());
+    const timeDifference = Math.abs(date2?.getTime() - date1?.getTime());
     const daysDifference = Math.ceil(timeDifference / MILLISECONDS);
     return daysDifference;
 
   }
-  const days=dayDifference(dates[0].startDate, dates[0].endDate);
+  const days=dayDifference(dates[0]?.startDate, dates[0]?.endDate);
   return (
     <div className='Hotel'>
       <Navbar />
@@ -102,7 +102,7 @@ const Hotel = () => {
                   This property has an excellent rating of 9.8!
                 </span>
                 <h2>
-                  <b>${days*data.cheapestPrice } /room </b>  <span>for {days} days </span>
+                  <b>${days*data?.cheapestPrice } /room </b>  <span>for {days} days </span>
                 </h2>
                 <button>Reserve or Book Now</button>
               </div>

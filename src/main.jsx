@@ -8,6 +8,7 @@ import List from './assets/pages/Hotel_list/List';
 import Hotel from './assets/pages/Hotel_details/Hotel';
 import Auth from './assets/pages/Auth/Auth.jsx'
 import {SearchContextProvider }from './context/SearchContext';
+import { AuthContextProvider } from './context/AuthContext.jsx'
 
 
 const router = createBrowserRouter([
@@ -42,8 +43,10 @@ const router = createBrowserRouter([
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <AuthContextProvider>
     <SearchContextProvider>
-       <RouterProvider router={router}/>
+      <RouterProvider router={router}/>
     </SearchContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>,
 )
