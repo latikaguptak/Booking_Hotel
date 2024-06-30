@@ -2,15 +2,40 @@
 import './Reserve.css';
 
 import useFetch from '../../hooks/useFetch';
+import { useContext, useState } from 'react';
+import { SearchContext } from '../../../context/SearchContext';
 
 const Reserve = ({setOpen, hotelId}) => {
+  const [selectedRooms,setSelectedRooms] = useState([])
 
+  const {dates} = useContext(SearchContext)
+  const getDatesInRange = (startDate, endDate)=> {
+    const start=new Date(startDate)
+    const end=new Date(endDate)
+    const date=new Date(start.getTime());
+    let dates=[]
+    while(date=>end) {
+      dates.push(new Date(date))
+      date.setDate(date.getDate()+1)
+    }
+    return dates
+
+  }
+  console.log("dates",getDatesInRange())
   const {data, loading, error} = useFetch(`hotels/room/${hotelId}`)
   console.log('data',data)
   const handleChange = (e) => {
-    console.log('e.target.value',e.target.value)
+    const checked = e.target.checked
+    const value = e.target.value
+    setSelectedRooms(checked?[...selectedRooms, value] : selectedRooms.filter(items=>item !==value))
     // setRoomNumber(e.target.value)
 
+
+  }
+  console.log(selectedRooms)
+  const handleClick = () => {
+    console.log(selectedRooms)
+    // make api call to reserve rooms
   }
   
   return (
@@ -35,16 +60,18 @@ const Reserve = ({setOpen, hotelId}) => {
               alt=''
               />
             </div>
-              {item?.roomNumbers.map(roomNumbers=>(<>
+              {item?.roomNumbers.map(roomNumber=>(<>
                 <div className= 'room'> 
-                  <lable> {roomNumbers?.number} </lable>
-                  <input type='select' value={roomNumbers._id} onChange={handleChange}/>
+                  <lable> {roomNumber?.number} </lable>
+                  <input type='checkbox' value={roomNumber._id} onChange={handleChange}/>
                 </div>
               </>))}
               {error && <div className= 'error'>error... </div>}
           </div>
+      
           </>
         ))}
+        <button onClick = {handleClick} className='rbutton'> Reserved Now!</button>
         
       </div>
         
