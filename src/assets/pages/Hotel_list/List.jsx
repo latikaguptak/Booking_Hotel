@@ -20,7 +20,7 @@ const List =() =>{
   const Hoteldetail=()=>{
     Navigate ("/Hotels:id")
   }
-  const { data , loading, error, reFetch } = useFetch(`/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`)
+  const { data , loading, error, reFetch } = useFetch(`hotels?city=${destination}&min=${min || 0}&max=${max || 999}`)
   console.log(data);
   const handleClick = ()=>{
     reFetch();
@@ -77,7 +77,7 @@ const List =() =>{
           <div onClick={Hoteldetail} className='listResults'>
             {loading ? <div className='loading'>Loading...</div> : (
               <>
-              {data.map((item)=>(<>
+              {data?.map((item)=>(<>
                 <SearchItem items={item} key={item._id}/>
                 </>))}
               </>

@@ -7,21 +7,24 @@ import Footer from './../../components/Footer/Footer';
 import { useContext, useState } from 'react';
 import { GoX } from "react-icons/go";
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useFetch from './../../hooks/useFetch';
 import { SearchContext } from '../../../context/SearchContext';
+import { AuthContext } from '../../../context/AuthContext';
+import Reserve from '../../components/reserve/Reserve';
 
 const Hotel = () => {
   const location = useLocation();
-  // console.log("location", location)
   const id = location.pathname.split("/")[2];
-  // console.log('id', id);
-
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const [openModel, setOpenModel] = useState(false);
+
   const { data, loading, error } = useFetch(`hotels/find/${id}`);
   const{dates, options} = useContext(SearchContext)
-  // console.log('dates', dates);
+
+  const {user} = useContext(AuthContext);
+  const navigate = useNavigate()
 
   const handleOpen = (i) => {
     setOpen(true);
@@ -47,6 +50,14 @@ const Hotel = () => {
 
   }
   const days=dayDifference(dates[0]?.startDate, dates[0]?.endDate);
+  const handleClick = () => {
+    if(user){
+      setOpenModel(true)
+    }else{
+      navigate('/login')
+    }
+  }
+
   return (
     <div className='Hotel'>
       <Navbar />
@@ -66,7 +77,7 @@ const Hotel = () => {
             </div>
           )}
           <div className='hotelWrapper'>
-            <button className='bookNow'>Reserve or Book Now</button>
+            <button onClick={handleClick} className='bookNow'>Reserve or Book Now</button>
             <h1 className='hotelTitle'>{data?.name}</h1>
             <div className='hotelAddress'>
               <FaLocationDot />
@@ -104,7 +115,7 @@ const Hotel = () => {
                 <h2>
                   <b>${days*data?.cheapestPrice } /room </b>  <span>for {days} days </span>
                 </h2>
-                <button>Reserve or Book Now</button>
+                <button onClick={handleClick}>Reserve or Book Now</button>
               </div>
             </div>
           </div>
@@ -112,7 +123,7 @@ const Hotel = () => {
           <Footer />
         </div>
       )}
-     
+     {openModel && <Reserve setOpen={setOpenModel} hotelId={id}/>}
     </div>
   );
 }

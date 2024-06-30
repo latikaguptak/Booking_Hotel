@@ -9,6 +9,7 @@ import Hotel from './assets/pages/Hotel_details/Hotel';
 import Auth from './assets/pages/Auth/Auth.jsx'
 import {SearchContextProvider }from './context/SearchContext';
 import { AuthContextProvider } from './context/AuthContext.jsx'
+import Reserve from './assets/components/reserve/Reserve.jsx'
 
 
 const router = createBrowserRouter([
@@ -37,7 +38,11 @@ const router = createBrowserRouter([
   {
     path: '/Register',
     element: <Auth authType ='false'/>
-  }
+  },
+  // {
+  //   path: '/Reserve',
+  //   element: <Reserve  setOpen = 'true' />
+  // }
 ])
   }
 ])
