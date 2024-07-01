@@ -11,7 +11,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useFetch from './../../hooks/useFetch';
 import { SearchContext } from '../../../context/SearchContext';
 import { AuthContext } from '../../../context/AuthContext';
-import Reserve from '../../components/reserve/Reserve';
+import Reserve from './../../components/reserve/Reserve';
+
 
 const Hotel = () => {
   const location = useLocation();
@@ -21,15 +22,15 @@ const Hotel = () => {
   const [openModel, setOpenModel] = useState(false);
 
   const { data, loading, error } = useFetch(`hotels/find/${id}`);
-  const{dates, options} = useContext(SearchContext)
+  const { dates, options } = useContext(SearchContext);
 
-  const {user} = useContext(AuthContext);
-  const navigate = useNavigate()
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleOpen = (i) => {
     setOpen(true);
     setSlideNumber(i);
-  }
+  };
 
   const handleMove = (direction) => {
     let newSlideNumber;
@@ -42,22 +43,23 @@ const Hotel = () => {
 
     setSlideNumber(newSlideNumber);
   };
-  const MILLISECONDS = 1000 * 60 * 60 * 24;
+
+  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   const dayDifference = (date1, date2) => {
     const timeDifference = Math.abs(date2?.getTime() - date1?.getTime());
-    const daysDifference = Math.ceil(timeDifference / MILLISECONDS);
+    const daysDifference = Math.ceil(timeDifference / MILLISECONDS_PER_DAY);
     return daysDifference;
+  };
 
-  }
-  const days=dayDifference(dates[0]?.startDate, dates[0]?.endDate);
+  const days = dates[0] ? dayDifference(dates[0].startDate, dates[0].endDate) : 1;
+
   const handleClick = () => {
-    if(user){
-      setOpenModel(true)
-    }else{
-      navigate('/login')
+    if (user) {
+      setOpenModel(true);
+    } else {
+      navigate('/login');
     }
-  }
-
+  };
   return (
     <div className='Hotel'>
       <Navbar />

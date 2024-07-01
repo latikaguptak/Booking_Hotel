@@ -1,5 +1,5 @@
 import "./Header.css";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { FaBed, FaCalendar, FaCar, FaHotel, FaPlane, FaTaxi } from "react-icons/fa";
 import { BsPersonStanding } from "react-icons/bs";
 import { DateRange } from "react-date-range";
@@ -40,7 +40,7 @@ const Header = ({ type }) => {
   const {dispatch} = useContext(SearchContext)
   const handleSearch = () => {
     dispatch({ type: 'NEW_SEARCH', payload: { destination, dates, option } });
-    navigate('/hotels', { state: { destination, dates, option } });
+    navigate('/hotels');
   };
   return (
     <>

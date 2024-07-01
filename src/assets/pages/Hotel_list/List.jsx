@@ -1,19 +1,20 @@
 import './List.css'
 import Navbar from './../../components/Navbar/Navbar';
 import Header from './../../components/Header/Header';
-import { Navigate, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { Navigate} from 'react-router-dom';
+import { useContext, useState } from 'react';
 import { format } from 'date-fns';
 import { DateRange } from 'react-date-range';
 import SearchItem from '../../components/SearchItem/SearchItem';
 import useFetch from '../../hooks/useFetch';
+import { SearchContext } from '../../../context/SearchContext';
 
 const List =() =>{
-  const location = useLocation();
-  const [destination ,setDestination] = useState(location.state.destination);
-  const [dates ,setDates] = useState(location.state.dates);
+  const {city, dates, options,dispatch } = useContext(SearchContext);
+  const [destination ,setDestination] = useState(city);
+  const [date ,setDate] = useState(dates);
   const [openDate ,setOpenDate] = useState(false);
-  const [option ,setOption] = useState(location.state.option);
+  const [option ,setOption] = useState(options);
   const [min ,setMin] = useState(undefined);
   const [max ,setMax] = useState(undefined);
   // console.log(location);
@@ -24,6 +25,11 @@ const List =() =>{
   console.log(data);
   const handleClick = ()=>{
     reFetch();
+  }
+  const handleDateChange=()=>{
+
+    dispatch({ type: 'NEW_SEARCH', payload: { destination, date, option } });
+  
   }
   return (
     <div>
@@ -39,11 +45,11 @@ const List =() =>{
           </div>
           <div className='lsItem'>
             <label>Check-in-Date</label>
-            <span onClick={() => setOpenDate(!openDate)}>{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(dates[0].endDate, 'MM/dd/yyyy') }`}</span>
-            {openDate && <DateRange onChange={(item) => setDates(item.selection)}
+            <span onClick={() => setOpenDate(!openDate)}>{`${format(date[0]?.startDate, "MM/dd/yyyy")} to ${format(date[0]?.endDate, 'MM/dd/yyyy') }`}</span>
+            {openDate && <DateRange onChange={(item) => setDate(item.selection)}
             minDate={new Date()} 
-            ranges={dates}
-            />}
+            ranges={date}
+            onClick={handleDateChange}/>}
           
            <div className='lsItem'>
             <label>Option</label>

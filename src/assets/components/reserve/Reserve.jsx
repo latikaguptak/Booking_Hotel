@@ -6,23 +6,25 @@ import { useContext, useState } from 'react';
 import { SearchContext } from '../../../context/SearchContext';
 
 const Reserve = ({setOpen, hotelId}) => {
+
+  const {data, loading, error} = useFetch(`hotels/room/${hotelId}`)
+  const {dates} = useContext(SearchContext)
   const [selectedRooms,setSelectedRooms] = useState([])
 
-  const {dates} = useContext(SearchContext)
+  console.log("dates",dates)
   const getDatesInRange = (startDate, endDate)=> {
     const start=new Date(startDate)
     const end=new Date(endDate)
     const date=new Date(start.getTime());
     let dates=[]
-    while(date=>end) {
-      dates.push(new Date(date))
-      date.setDate(date.getDate()+1)
-    }
+    // while(date=>end) {
+    //   dates.push(new Date(date))
+    //   date.setDate(date.getDate()+1)
+    // }
     return dates
 
   }
   console.log("dates",getDatesInRange())
-  const {data, loading, error} = useFetch(`hotels/room/${hotelId}`)
   console.log('data',data)
   const handleChange = (e) => {
     const checked = e.target.checked
