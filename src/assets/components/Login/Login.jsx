@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { FaUser } from "react-icons/fa";
-import { RiLockPasswordLine } from "react-icons/ri";
+
 import "./Login.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -50,7 +49,7 @@ const Login = () => {
             placeholder="Username"
             className="inputDesign"
           />
-          <FaUser className="iconDisplay" />
+          
         </div>
         {errors.username && <p className="error">{errors.username.message}</p>}
 
@@ -71,7 +70,7 @@ const Login = () => {
             placeholder="Password"
             className="inputDesign"
           />
-          <RiLockPasswordLine className="iconDisplay" />
+         
         </div>
         {errors.password && <p className="error">{errors.password.message}</p>}
 

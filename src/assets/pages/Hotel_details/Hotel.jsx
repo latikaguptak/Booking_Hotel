@@ -3,7 +3,7 @@ import Navbar from './../../components/Navbar/Navbar';
 import Header from './../../components/Header/Header';
 import { FaLocationDot } from "react-icons/fa6";
 import MailList from './../../components/MailList/MailList';
-import Footer from './../../components/Footer/Footer';
+
 import { useContext, useState } from 'react';
 import { GoX } from "react-icons/go";
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
@@ -108,7 +108,7 @@ const Hotel = () => {
             </div>
           </div>
           <MailList />
-          <Footer />
+        
         </div>
       )}
       {openModel && <Reserve setOpen={setOpenModel} hotelId={id}/>}

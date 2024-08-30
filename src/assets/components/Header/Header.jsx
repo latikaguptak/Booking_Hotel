@@ -40,8 +40,12 @@ const Header = ({ type }) => {
   };
 
   const handleSearch = () => {
-    dispatch({ type: 'NEW_SEARCH', payload: { destination, dates, options } });
-    navigate('/hotels');
+    if (destination.trim()) { // Ensure destination is not empty
+      dispatch({ type: 'NEW_SEARCH', payload: { city: destination, dates, options } });
+      navigate('/hotels');
+    } else {
+      alert("Please enter a destination.");
+    }
   };
 
   return (

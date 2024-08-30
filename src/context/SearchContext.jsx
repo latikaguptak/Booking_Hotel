@@ -1,13 +1,14 @@
+// SearchContext.js
 import { createContext, useReducer } from "react";
-import PropTypes from 'prop-types'; // Import PropTypes
+import PropTypes from 'prop-types';
 
 const INITIAL_STATE = {
-    city: undefined,
+    city: "",  // Default city state as an empty string
     dates: [],
     options: {
         adults: 1,
         children: 0,
-        room: 1, // Changed default room count to 1
+        room: 1,
     },
 };
 
@@ -16,13 +17,18 @@ export const SearchContext = createContext(INITIAL_STATE);
 const SearchReducer = (state, action) => {
     switch (action.type) {
         case "NEW_SEARCH":
-            return { ...state, ...action.payload };
+            return { 
+                ...state, 
+                city: action.payload.city, 
+                dates: action.payload.dates, 
+                options: action.payload.options 
+            };
         case "SET_CITY":
-            return { ...state, city: action.payload || state.city }; // Ensure payload isn't null or undefined
+            return { ...state, city: action.payload || state.city };
         case "SET_DATES":
-            return { ...state, dates: action.payload || state.dates }; // Ensure payload isn't null or undefined
+            return { ...state, dates: action.payload || state.dates };
         case "SET_OPTION":
-            return { ...state, options: { ...state.options, ...action.payload } }; // Merge options to prevent overwriting
+            return { ...state, options: { ...state.options, ...action.payload } };
         default:
             return state;
     }
@@ -32,13 +38,17 @@ export const SearchContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(SearchReducer, INITIAL_STATE);
 
     return (
-        <SearchContext.Provider value={{ city: state.city, dates: state.dates, options: state.options, dispatch }}>
+        <SearchContext.Provider value={{ 
+            city: state.city, 
+            dates: state.dates, 
+            options: state.options, 
+            dispatch 
+        }}>
             {children}
         </SearchContext.Provider>
     );
 };
 
-// Define PropTypes for the component
 SearchContextProvider.propTypes = {
-    children: PropTypes.node.isRequired, // Mark 'children' as required
+    children: PropTypes.node.isRequired,
 };

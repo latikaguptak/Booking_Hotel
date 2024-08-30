@@ -5,13 +5,14 @@
   .homeContainer {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 10px; /* Reduced padding for a cleaner look */
+    padding: 0px; /* Reduced padding for a cleaner look */
     display: flex;
     flex-direction: column;
+    padding: 8px;
     align-items: center;
     gap: 25px; /* Moderate gap for better spacing */
     /* White background for contrast */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+    /* Subtle shadow for depth */
     border-radius: 0px; /* Smooth rounded corners */
   }
   

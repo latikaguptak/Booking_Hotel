@@ -1,10 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Clear user data from localStorage
+    localStorage.removeItem('user');
+
+    // Dispatch logout action to update context state
+    dispatch({ type: 'LOG_OUT' });
+
+    // Redirect to login page
+    navigate('/login');
+  };
 
   return (
     <div className="navbar">
@@ -13,7 +25,12 @@ const Navbar = () => {
           <span className="logo">TheHotels.com</span>
         </Link>
         {user ? (
-          <span className="navUser">Welcome, {user.username}</span>
+          <div className="navUserActions">
+            <span className="navUser">Welcome, {user.username}</span>
+            <button className="navButton logoutButton" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
         ) : (
           <div className="navItems">
             <Link to='/register' className="navButton">Register</Link>
