@@ -1,20 +1,76 @@
-.homeContainer{
-    margin-top: 50px;
+/* Home.css */
+
+  
+  
+  .homeContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px; /* Reduced padding for a cleaner look */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
-}
-
-.homeTitle{
-    width: 1024px;
-    font-size: 20px;
-    font-weight: 700px;
-    color: #000000;
-}
-.homefeaturdeProp{
-    width: 1024px;
-    font-size: 20px;
-    font-weight: bolder;
-    color: #000000;    
-}
+    gap: 25px; /* Moderate gap for better spacing */
+    /* White background for contrast */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+    border-radius: 0px; /* Smooth rounded corners */
+  }
+  
+  .homeTitle,
+  .homefeaturdeProp {
+    font-size: 26px;
+    font-weight: bold;
+    color: #001228; /* Dark blue for headings */
+    margin: 5px 0; /* Minimal margin for a tight, clean appearance */
+    text-align: center;
+    position: relative;
+  }
+  
+  .homeTitle::after,
+  .homefeaturdeProp::after {
+    content: '';
+    width: 60px;
+    height: 3px;
+    background-color: #428bd0; /* Accent color for visual interest */
+    display: block;
+    margin: 10px auto 0; /* Centered decorative line with minimal spacing */
+  }
+  
+  .homeContainer > * {
+    width: 100%;
+    padding: 10px 0; /* Reduced padding for a streamlined look */
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+  }
+  
+  .homeContainer > *:hover {
+    transform: translateY(-3px); /* Slight lift effect on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Enhanced shadow for hover state */
+  }
+  
+  @media (max-width: 768px) {
+    .homeContainer {
+      padding: 15px; /* Slightly more compact padding for tablets */
+    }
+  
+    .homeTitle,
+    .homefeaturdeProp {
+      font-size: 22px; /* Slightly smaller font size for better fit */
+    }
+  
+    .homeContainer > * {
+      padding: 8px 0; /* Reduced padding for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .homeTitle,
+    .homefeaturdeProp {
+      font-size: 20px; /* Adjusted font size for mobile */
+    }
+  
+    .homeContainer > * {
+      padding: 5px 0; /* Minimal padding for a compact mobile view */
+    }
+  }
+  

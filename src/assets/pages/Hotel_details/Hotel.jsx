@@ -13,111 +13,97 @@ import { SearchContext } from '../../../context/SearchContext';
 import { AuthContext } from '../../../context/AuthContext';
 import Reserve from './../../components/reserve/Reserve';
 
-
 const Hotel = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
-  const [open, setOpen] = useState(false);
+  const [openSlider, setOpenSlider] = useState(false);
   const [openModel, setOpenModel] = useState(false);
 
   const { data, loading, error } = useFetch(`hotels/find/${id}`);
   const { dates, options } = useContext(SearchContext);
-
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleOpen = (i) => {
-    setOpen(true);
-    setSlideNumber(i);
+  const handleOpenSlider = (index) => {
+    setOpenSlider(true);
+    setSlideNumber(index);
   };
 
-  const handleMove = (direction) => {
-    let newSlideNumber;
-
-    if (direction === "left") {
-      newSlideNumber = slideNumber === 0 ? data.photos.length - 1 : slideNumber - 1;
-    } else {
-      newSlideNumber = slideNumber === data.photos.length - 1 ? 0 : slideNumber + 1;
-    }
-
-    setSlideNumber(newSlideNumber);
+  const handleSlideChange = (direction) => {
+    const totalPhotos = data.photos.length;
+    setSlideNumber((prev) => 
+      direction === "left" 
+        ? (prev === 0 ? totalPhotos - 1 : prev - 1) 
+        : (prev === totalPhotos - 1 ? 0 : prev + 1)
+    );
   };
 
-  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
-  const dayDifference = (date1, date2) => {
-    const timeDifference = Math.abs(date2?.getTime() - date1?.getTime());
-    const daysDifference = Math.ceil(timeDifference / MILLISECONDS_PER_DAY);
-    return daysDifference;
+  const calculateDaysDifference = (date1, date2) => {
+    const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+    return Math.ceil(Math.abs(date2?.getTime() - date1?.getTime()) / MILLISECONDS_PER_DAY);
   };
 
-  const days = dates[0] ? dayDifference(dates[0].startDate, dates[0].endDate) : 1;
+  const days = dates[0] ? calculateDaysDifference(dates[0].startDate, dates[0].endDate) : 1;
 
-  const handleClick = () => {
+  const handleReserveClick = () => {
     if (user) {
       setOpenModel(true);
     } else {
       navigate('/login');
     }
   };
+
   return (
-    <div className='Hotel'>
+    <div className='hotel'>
       <Navbar />
       <Header type='list' />
       {loading ? (
         <div className='loading'>Loading...</div>
       ) : (
         <div className='hotelContainer'>
-          {open && (
+          {openSlider && (
             <div className='hotelSlider'>
-              <GoX onClick={() => setOpen(false)} className='crossSlider' />
-              <MdKeyboardDoubleArrowLeft className='arrow' onClick={() => handleMove("left")} />
+              <GoX onClick={() => setOpenSlider(false)} className='closeSlider' />
+              <MdKeyboardDoubleArrowLeft className='arrow' onClick={() => handleSlideChange("left")} />
               <div className='hotelSliderWrapper'>
                 <img src={data?.photos[slideNumber]} alt="" className='hotelSliderImg' />
               </div>
-              <MdKeyboardDoubleArrowRight className='arrow' onClick={() => handleMove("right")} />
+              <MdKeyboardDoubleArrowRight className='arrow' onClick={() => handleSlideChange("right")} />
             </div>
           )}
           <div className='hotelWrapper'>
-            <button onClick={handleClick} className='bookNow'>Reserve or Book Now</button>
+            <button onClick={handleReserveClick} className='bookNow'>Reserve or Book Now</button>
             <h1 className='hotelTitle'>{data?.name}</h1>
             <div className='hotelAddress'>
               <FaLocationDot />
-              <span>{data?.address} </span>
+              <span>{data?.address}</span>
             </div>
             <span className='hotelDistance'>
-              Excellent Location {data?.distance}m from center
+              Excellent location – {data?.distance}m from the center
             </span>
             <span className='hotelPriceHighlight'>
-              Book a stay over ${data?.cheapestPrice} at this property and get a free airport taxi
+              Book a stay over ${data?.cheapestPrice} at this property and get a free airport taxi!
             </span>
             <div className='hotelImages'>
               {data.photos?.map((photo, i) => (
                 <div key={i} className='hotelImageWrapper'>
-                  <img onClick={() => handleOpen(i)} className='hotelImage' src={photo} alt='' />
+                  <img onClick={() => handleOpenSlider(i)} className='hotelImage' src={photo} alt='' />
                 </div>
               ))}
             </div>
             <div className='hotelDetails'>
-              <div className='hotelDetailstexts'>
-                <h1 className='hotelDetailTitle'>
-                  {data?.title}
-                </h1>
-                <p className='hotelDesc'>
-                  {data?.desc}
-                </p>
+              <div className='hotelDetailTexts'>
+                <h1 className='hotelDetailTitle'>{data?.title}</h1>
+                <p className='hotelDesc'>{data?.desc}</p>
               </div>
               <div className='hotelDetailsPrice'>
-                <h1>
-                  Perfect for a {days} days stay!
-                </h1>
-                <span>
-                  This property has an excellent rating of 9.8!
-                </span>
+                <h1>Perfect for a {days}-night stay!</h1>
+                <span>Top rated – 9.8 (Excellent)!</span>
                 <h2>
-                  <b>${days*data?.cheapestPrice } /room </b>  <span>for {days} days </span>
+                  <b>${days * data?.cheapestPrice}</b> ({days} nights)
                 </h2>
-                <button onClick={handleClick}>Reserve or Book Now</button>
+                <button onClick={handleReserveClick}>Reserve or Book Now</button>
               </div>
             </div>
           </div>
@@ -125,7 +111,7 @@ const Hotel = () => {
           <Footer />
         </div>
       )}
-     {openModel && <Reserve setOpen={setOpenModel} hotelId={id}/>}
+      {openModel && <Reserve setOpen={setOpenModel} hotelId={id}/>}
     </div>
   );
 }

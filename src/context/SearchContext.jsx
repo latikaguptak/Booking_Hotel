@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import PropTypes from 'prop-types'; // Import PropTypes
 
 const INITIAL_STATE = {
     city: undefined,
@@ -6,9 +7,9 @@ const INITIAL_STATE = {
     options: {
         adults: 1,
         children: 0,
-        room: 0,
-    }
-}
+        room: 1, // Changed default room count to 1
+    },
+};
 
 export const SearchContext = createContext(INITIAL_STATE);
 
@@ -17,11 +18,11 @@ const SearchReducer = (state, action) => {
         case "NEW_SEARCH":
             return { ...state, ...action.payload };
         case "SET_CITY":
-            return { ...state, city: action.payload };
+            return { ...state, city: action.payload || state.city }; // Ensure payload isn't null or undefined
         case "SET_DATES":
-            return { ...state, dates: action.payload };
+            return { ...state, dates: action.payload || state.dates }; // Ensure payload isn't null or undefined
         case "SET_OPTION":
-            return { ...state, options: action.payload };
+            return { ...state, options: { ...state.options, ...action.payload } }; // Merge options to prevent overwriting
         default:
             return state;
     }
@@ -29,9 +30,15 @@ const SearchReducer = (state, action) => {
 
 export const SearchContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(SearchReducer, INITIAL_STATE);
+
     return (
-        <SearchContext.Provider value={{ city: state?.city, dates: state?.dates, options: state?.options, dispatch }}>
+        <SearchContext.Provider value={{ city: state.city, dates: state.dates, options: state.options, dispatch }}>
             {children}
         </SearchContext.Provider>
     );
+};
+
+// Define PropTypes for the component
+SearchContextProvider.propTypes = {
+    children: PropTypes.node.isRequired, // Mark 'children' as required
 };

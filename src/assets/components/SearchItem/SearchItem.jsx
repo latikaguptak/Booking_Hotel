@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link, Navigate } from 'react-router-dom'
 import './SearchItem.css'
 

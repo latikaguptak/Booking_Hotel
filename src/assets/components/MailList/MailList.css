@@ -1,32 +1,123 @@
-.mail{
-    margin-top: 50px;
-    width: 100%;
-    background-color: #428bd0;
-    color: white;
+/* MailList.css */
+:root {
+    --mailList-primary-color: #5c6bc0; /* Unique color for MailList */
+    --mailList-secondary-color: #283593; /* Secondary color for MailList */
+    --mailList-text-color: #e8eaf6; /* Light text color for MailList */
+    --mailList-bg-color: #1a237e; /* Background color for MailList */
+    --mailList-accent-color: #ffb300; /* Accent color for MailList buttons */
+    --mailList-shadow-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .mailList {
+    background-color: var(--mailList-bg-color);
+    color: var(--mailList-text-color);
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px var(--mailList-shadow-color);
+    margin: 40px 0;
+  }
+  
+  .mailList__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--mailList-accent-color);
+  }
+  
+  .mailList__description {
+    font-size: 16px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  
+  .mailList__inputContainer {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    margin-bottom: 15px;
     gap: 10px;
-    padding: 50px;
-
-}
-.mailInputContainer>input{
-    width: 300px;
-    height: 30px;
+  }
+  
+  .mailList__input {
     padding: 10px;
-    border: None;
-    margin-right: 10px;
+    border: none;
     border-radius: 5px;
-
-}
-
-.mailInputContainer>button{
-    height: 50px;
-    background-color: #ffdb78;
-    color: #000;
-    font-weight: 500;
+    font-size: 16px;
+    width: 250px;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .mailList__input:focus {
+    box-shadow: 0 0 10px var(--mailList-primary-color);
+  }
+  
+  .mailList__button {
+    padding: 10px 20px;
+    background-color: var(--mailList-accent-color);
+    color: var(--mailList-text-color);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .mailList__button:hover {
+    background-color: #ffa726;
+    transform: scale(1.05);
+  }
+  
+  .mailList__footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    color: var(--mailList-text-color);
+  }
+  
+  .mailList__footerLists {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .mailList__footerList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .mailList__footerListItem {
+    margin-bottom: 8px;
+    cursor: pointer;
+    color: var(--mailList-text-color);
+    transition: color 0.3s ease;
+  }
+  
+  .mailList__footerListItem:hover {
+    color: var(--mailList-accent-color);
+  }
+  
+  .mailList__footerText {
+    font-size: 14px;
+    display: block;
+    margin-top: 10px;
+    color: var(--mailList-text-color);
+  }
+  
+  @media (max-width: 768px) {
+    .mailList__inputContainer {
+      flex-direction: column;
+    }
+  
+    .mailList__footerLists {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .mailList__footerList {
+      margin-bottom: 10px;
+    }
+  }
+  
