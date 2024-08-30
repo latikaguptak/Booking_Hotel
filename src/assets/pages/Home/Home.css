@@ -3,8 +3,9 @@
   
   
   .homeContainer {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 100%;
+     background-color: #001228;
+    
     padding: 0px; /* Reduced padding for a cleaner look */
     display: flex;
     flex-direction: column;
@@ -20,7 +21,7 @@
   .homefeaturdeProp {
     font-size: 26px;
     font-weight: bold;
-    color: #001228; /* Dark blue for headings */
+    color: #ffff;
     margin: 5px 0; /* Minimal margin for a tight, clean appearance */
     text-align: center;
     position: relative;
