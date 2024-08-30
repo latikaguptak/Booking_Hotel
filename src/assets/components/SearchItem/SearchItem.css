@@ -64,3 +64,43 @@
   color: #febb02;
   margin-top: 20px;
 }
+/* SearchItem.css */
+
+/* Other styles here... */
+
+.siCheckButton {
+  padding: 8px 20px; /* Well-defined padding for button comfort */
+  background-color: transparent; /* Transparent background for a flat look */
+  color: #ffffff; /* White text for visibility */
+  border: 2px solid #febb02; /* Border matching accent color from navbar */
+  border-radius: 25px; /* Rounded corners for a soft appearance */
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px; /* Consistent font size */
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  display: inline-block; /* Aligns the button inline with other elements */
+  margin-top: 10px; /* Adds some spacing above the button */
+}
+
+.siCheckButton:hover {
+  background-color: #febb02; /* Highlight background on hover */
+  color: #001228; /* Dark text on hover for contrast */
+  transform: translateY(-2px); /* Slight lift on hover for a modern effect */
+}
+
+/* Media queries for responsiveness */
+
+@media (max-width: 768px) {
+  .siCheckButton {
+    width: 100%; /* Full width for better accessibility on smaller screens */
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .siCheckButton {
+    font-size: 12px; /* Slightly smaller text size for very small screens */
+    padding: 6px 15px; /* Compact padding for small screens */
+  }
+}

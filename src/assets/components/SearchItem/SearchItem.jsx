@@ -2,6 +2,7 @@
 /* SearchItem.jsx */
 import './SearchItem.css';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Placeholder for loading and error state
 const LoadingIndicator = () => <div className="loading">Loading...</div>;
@@ -10,6 +11,7 @@ const ErrorIndicator = () => <div className="error">Error loading item data.</di
 const SearchItem = ({ item }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   useEffect(() => {
     if (!item) {
@@ -26,7 +28,12 @@ const SearchItem = ({ item }) => {
   if (loading) return <LoadingIndicator />;
   if (error) return <ErrorIndicator />;
 
-  const { name, city, cheapestPrice, rating } = item || {};
+  const { name, city, cheapestPrice, rating, _id } = item || {};
+
+  // Updated function to navigate to hotel details
+  const handleDetailClick = () => {
+    navigate(`/hotels/${_id}`); // Navigate to the hotel details page with the hotel ID
+  };
 
   return (
     <div className='searchItem'>
@@ -47,6 +54,8 @@ const SearchItem = ({ item }) => {
         ) : (
           <span>No rating available</span>
         )}
+        <span className='siTaxOp'>Includes taxes and fees</span>
+        <button onClick={handleDetailClick} className='siCheckButton'>See availability</button>
       </div>
     </div>
   );

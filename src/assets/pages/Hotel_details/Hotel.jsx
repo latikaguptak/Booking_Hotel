@@ -20,8 +20,8 @@ const Hotel = () => {
   const [openSlider, setOpenSlider] = useState(false);
   const [openModel, setOpenModel] = useState(false);
 
-  const { data, loading, error } = useFetch(`hotels/find/${id}`);
-  const { dates, options } = useContext(SearchContext);
+  const { data, loading } = useFetch(`hotels/find/${id}`);
+  const { dates } = useContext(SearchContext);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ const Hotel = () => {
   };
 
   const handleSlideChange = (direction) => {
-    const totalPhotos = data.photos.length;
+    const totalPhotos = 6; // Since we're using a static image, assume 6 images for the slider
     setSlideNumber((prev) => 
       direction === "left" 
         ? (prev === 0 ? totalPhotos - 1 : prev - 1) 
@@ -54,6 +54,8 @@ const Hotel = () => {
     }
   };
 
+  const defaultImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz45nXYtzJ9tGvukajD9c6WPev6xJna3MyyQ&s";
+
   return (
     <div className='hotel'>
       <Navbar />
@@ -67,7 +69,7 @@ const Hotel = () => {
               <GoX onClick={() => setOpenSlider(false)} className='closeSlider' />
               <MdKeyboardDoubleArrowLeft className='arrow' onClick={() => handleSlideChange("left")} />
               <div className='hotelSliderWrapper'>
-                <img src={data?.photos[slideNumber]} alt="" className='hotelSliderImg' />
+                <img src={defaultImageUrl} alt="" className='hotelSliderImg' />
               </div>
               <MdKeyboardDoubleArrowRight className='arrow' onClick={() => handleSlideChange("right")} />
             </div>
@@ -86,9 +88,9 @@ const Hotel = () => {
               Book a stay over ${data?.cheapestPrice} at this property and get a free airport taxi!
             </span>
             <div className='hotelImages'>
-              {data.photos?.map((photo, i) => (
+              {Array.from({ length: 6 }).map((_, i) => (
                 <div key={i} className='hotelImageWrapper'>
-                  <img onClick={() => handleOpenSlider(i)} className='hotelImage' src={photo} alt='' />
+                  <img onClick={() => handleOpenSlider(i)} className='hotelImage' src={defaultImageUrl} alt='' />
                 </div>
               ))}
             </div>
@@ -103,12 +105,11 @@ const Hotel = () => {
                 <h2>
                   <b>${days * data?.cheapestPrice}</b> ({days} nights)
                 </h2>
-                <button onClick={handleReserveClick}>Reserve or Book Now</button>
+                <button onClick={handleReserveClick} className='reserveButton'>Reserve or Book Now</button>
               </div>
             </div>
           </div>
           <MailList />
-        
         </div>
       )}
       {openModel && <Reserve setOpen={setOpenModel} hotelId={id}/>}
