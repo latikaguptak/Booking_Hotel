@@ -1,0 +1,124 @@
+/* Reserve.css */
+
+.reserve {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* High z-index to ensure it's on top */
+    overflow-y: auto; /* Allows the modal to be scrollable */
+    padding: 20px; /* Adds some padding to the edges */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+  }
+  
+  .rContainer {
+    width: 100%;
+    max-width: 600px;
+    background-color: #001228; /* Dark background for the modal */
+    color: #ffffff; /* White text for readability */
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    max-height: 90vh; /* Ensures modal doesn't exceed viewport height */
+    overflow-y: auto; /* Allows internal scrolling if content is too long */
+  }
+  
+  .rClose {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #febb02;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .rooms {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  
+  .rItem {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #febb02;
+    border-radius: 8px;
+  }
+  
+  .rItemInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .rImage {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  
+  .room {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .loading,
+  .error,
+  .warning {
+    color: #febb02;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .rButton {
+    width: 100%;
+    padding: 12px;
+    background-color: #febb02;
+    color: #001228;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .rButton:disabled {
+    background-color: #ddd;
+    color: #888;
+    cursor: not-allowed;
+  }
+  
+  .rButton:hover:not(:disabled) {
+    background-color: #ffcc33;
+  }
+  
+  @media (max-width: 480px) {
+    .rContainer {
+      max-width: 90%; /* Make modal narrower on small screens */
+      padding: 15px; /* Reduce padding */
+    }
+  
+    .rButton {
+      font-size: 14px; /* Adjust button text size */
+    }
+  
+    .rClose {
+      font-size: 20px; /* Adjust close button size */
+    }
+  }
+  

@@ -1,30 +1,112 @@
-.pList{
-
-     width: 100%;
+Property.css
+:root {
+    --primary-color: #428bd0;
+    --secondary-color:#febb02;
+    --text-color: #ffffff;
+    --background-color: #f0f0f5;
+    --highlight-color:  #001228;
+    --error-color: rgb(193, 30, 30);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .propertyListContainer {
+    width: 100%;
     max-width: 1024px;
     display: flex;
     justify-content: space-between;
     gap: 20px;
-}
-.pListItem{
-    flex: 1;
+    margin: 40px auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+  }
+  
+  .propertyItem {
+    flex: 1 1 calc(33.33% - 20px);
     position: relative;
+    background-color: var(--secondary-color);
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
-
-}
-.pListImg{
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .propertyItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .propertyImg {
     width: 100%;
-    max-width: 120px;
-    height: 120px;
-    
+    height: 150px;
     object-fit: cover;
-
-}
-.pListTitle>h2{
-    font-size: 16px;
-}
- .pListTitle>h3{
+    border-bottom: 3px solid var(--highlight-color);
+    transition: transform 0.3s ease;
+  }
+  
+  .propertyItem:hover .propertyImg {
+    transform: scale(1.05);
+  }
+  
+  .propertyTitle {
+    padding: 15px;
+    text-align: center;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+  }
+  
+  .propertyTitle h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+  }
+  
+  .propertyTitle h3 {
     font-size: 14px;
-}
+    color: var(--highlight-color);
+  }
+  
+  .propertyItem:hover .propertyTitle h2 {
+    color: var(--highlight-color);
+  }
+  
+  .propertyLoading, .propertyError {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    color: var(--primary-color);
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .propertyListContainer {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .propertyItem {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .propertyImg {
+      height: 120px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .propertyTitle h2 {
+      font-size: 16px;
+    }
+  
+    .propertyTitle h3 {
+      font-size: 12px;
+    }
+  
+    .propertyImg {
+      height: 100px;
+    }
+  }
+  

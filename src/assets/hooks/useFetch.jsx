@@ -5,32 +5,34 @@ const useFetch = (url) => {
     const apiUrl = import.meta.env.VITE_API_URL;
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null); // Initialize error state with null
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
                 const res = await axios.get(`${apiUrl}/${url}`);
-                setData(res.data); // Update data state with fetched data
+                setData(res.data);
             } catch (err) {
-                setError(err); // Set error state if request fails
+                setError(err.message || 'An error occurred');
+            } finally {
+                setLoading(false);
             }
-            setLoading(false);
         };
 
-        fetchData(); // Call fetchData initially and whenever url changes
-    }, [url, apiUrl]); // Include url and apiUrl in the dependency array
+        fetchData();
+    }, [url, apiUrl]);
 
     const reFetch = async () => {
         setLoading(true);
         try {
             const res = await axios.get(`${apiUrl}/${url}`);
-            setData(res.data); // Update data state with fetched data
+            setData(res.data);
         } catch (err) {
-            setError(err); // Set error state if request fails
+            setError(err.message || 'An error occurred');
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     return { data, loading, error, reFetch };

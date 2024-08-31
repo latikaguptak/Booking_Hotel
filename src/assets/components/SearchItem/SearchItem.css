@@ -1,110 +1,106 @@
-.searchItem{
-    border: 1px solid #c0c0c0;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    gap:20px;
-    margin-bottom: 20px;
-}
-.siImg{
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-}
-.siDesc{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 2;
+/* SearchItem.css */
 
-}
-.siTitle{
-    font-size: 20px;
-    color: #428bd0;
+.searchItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #001228; /* Dark background similar to login page */
+  border-radius: 8px;
+  padding: 20px;
+  margin: 15px 0;
+  transition: transform 0.2s ease;
+  width: 100%; /* Full width to ensure responsiveness */
+  box-sizing: border-box;
 }
 
-.siDistance{
-    font-size: 12px;
-
+.searchItem:hover {
+  transform: scale(1.02);
 }
 
-.siTaxiOp{
-    font-size: 12px;
-    color: rgb(233, 231, 231);
-    background-color: #008009;
-    width: max-content;
-    padding: 3px;
-    border-radius: 5px;
-
-}
-.siSubtitle{
-    font-size: 12px;
-    font-weight: bold;
-}
-.siFeatures{
-    font-size: 12px;
-
-}
-.siCancelOp{
-    font-size: 12px;
-    color:#008009;
-    font-weight: bold;
-    
-}
-.siClassNameOpSubTitle{
-    font-size: 12px;
-    font-weight: bold;
-    color: #008009;
-}
-.siDetails{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.siImg {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: #ddd; /* Neutral background for image container */
+  margin-bottom: 15px;
 }
 
-.siRatting{
-    display: flex;
-    justify-content: space-between;
-
-}
-.siRatting>span{
-    font-weight: 500;
-}
-.siRatting>button{
-    background-color: #003580;
-    color:aliceblue;
-    padding: 5px;
-    font-weight: bold;
-    border: none;
-
+.siDesc {
+  text-align: center;
+  color: #ffffff; /* White text to stand out against dark background */
 }
 
-.siDetailsTaxes{
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.siTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-.siPrice{
-    font-size: 24px;
+.siCity, .siPrice {
+  font-size: 16px;
+  color: #febb02; /* Accent color matching the navbar and login page */
+  margin-bottom: 5px;
 }
 
-.siTaxOp{
-    font-size: 12px;
-    color: #555555
+.siRating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
 }
 
-.siCheckButton{
-    background-color: #428bd0;
-    color:white;
-    font-weight: bold;
-    padding: 10px 5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-
+.siRating button {
+  background-color: #febb02;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  color: #001228; /* Dark text for contrast */
+  font-weight: bold;
 }
 
+.loading, .error {
+  font-size: 18px;
+  color: #febb02;
+  margin-top: 20px;
+}
+/* SearchItem.css */
+
+/* Other styles here... */
+
+.siCheckButton {
+  padding: 8px 20px; /* Well-defined padding for button comfort */
+  background-color: transparent; /* Transparent background for a flat look */
+  color: #ffffff; /* White text for visibility */
+  border: 2px solid #febb02; /* Border matching accent color from navbar */
+  border-radius: 25px; /* Rounded corners for a soft appearance */
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px; /* Consistent font size */
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  display: inline-block; /* Aligns the button inline with other elements */
+  margin-top: 10px; /* Adds some spacing above the button */
+}
+
+.siCheckButton:hover {
+  background-color: #febb02; /* Highlight background on hover */
+  color: #001228; /* Dark text on hover for contrast */
+  transform: translateY(-2px); /* Slight lift on hover for a modern effect */
+}
+
+/* Media queries for responsiveness */
+
+@media (max-width: 768px) {
+  .siCheckButton {
+    width: 100%; /* Full width for better accessibility on smaller screens */
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .siCheckButton {
+    font-size: 12px; /* Slightly smaller text size for very small screens */
+    padding: 6px 15px; /* Compact padding for small screens */
+  }
+}

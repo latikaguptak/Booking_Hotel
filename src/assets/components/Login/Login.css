@@ -1,77 +1,145 @@
-.login{
+/* Login.css */
+
+.login {
     width: 100%;
     display: flex;
     justify-content: center;
-    flex-direction: column;
-}
-.Title{
-    font-size: 50px;
-    font-weight: inherit;
-    padding: 10px;
-    margin: 0px 0px 70px 50px;
-    
     align-items: center;
-}
-.loginInputs{
-
-    border-bottom: 2px solid #ffffff;
-    margin: 20px 10px;
-    margin-left: -10px;
-
-    
-
-}
-.iconDisplay{
-    margin-left: 90px;
-    width: max-content;
+    flex-direction: column;
+    padding: 40px 20px;
+    background-color: #001228; /* Dark background for consistency */
+    min-height: 100vh; /* Full viewport height for centered alignment */
 }
 
-.inputDesign{
+.Title {
+    font-size: 36px; /* Consistent font size */
+    font-weight: 700;
+    color: #febb02; /* Accent color for prominence */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.loginInputs {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    border-bottom: 2px solid #febb02; /* Accent border for input fields */
+    padding: 10px;
+    width: 100%; /* Full width for better alignment */
+    max-width: 400px; /* Max width for better control on larger screens */
+    background-color: transparent;
+    border-radius: 5px;
+    position: relative; /* For positioning icons properly */
+}
+
+.iconDisplay {
+    position: absolute;
+    left: 10px; /* Adjust position to align icons */
+    color: #febb02; /* Icon color matching accent */
+    font-size: 18px;
+}
+
+.inputDesign {
     border: none;
-    background-color: #001228;
+    background-color: transparent; /* Transparent background for a clean look */
     outline: none;
     color: #ffffff; 
-    width: max-content;   
-    font-size: 15px;
+    width: 100%; /* Full width for better usability */
+    font-size: 16px;
+    padding: 5px 5px 5px 35px; /* Add padding-left for space between icon and input text */
 }
-.loginReFor{
-    font-size: 12px;
+
+.loginReFor {
+    font-size: 14px;
     display: flex;
-    margin: 0px 5px 0px 0px;
-}
-.loginRemember{
-    flex: 1;
-}
-.loginForgotPassword{
-    color: #428bd0;
+    justify-content: space-between; /* Distribute Remember and Forgot Password */
+    width: 100%; /* Align with input width */
+    max-width: 400px; /* Consistent max width */
+    margin-bottom: 20px;
+    color: #ffffff;
 }
 
+.loginRemember input {
+    margin-right: 5px;
+}
 
-.loginButton{
-    width: 50%;
-    padding: 15px;
-    height: 50px;
-    border-radius: 100px;
-    border: none;
-    background-color: #428bd0;
-    color: rgb(255, 255, 255);
+.loginForgotPassword {
+    color: #febb02;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.loginForgotPassword:hover {
+    color: #ffffff;
+}
+
+.loginButton {
+    width: 100%;
+    max-width: 400px; /* Consistent max width */
+    padding: 12px 0;
+    border-radius: 25px;
+    border: 2px solid #febb02;
+    background-color: transparent; /* Transparent for a flat look */
+    color: #ffffff;
     font-size: 16px;
     font-weight: bold;
-    margin: 100px 0px 10px 50px;
     cursor: pointer;
-    align-items: center;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+    margin-bottom: 20px;
 }
 
-.auth-Register{
-    font-size: 11px;
-    margin: 20px 20px ;
-    align-items: center;
-
+.loginButton:hover {
+    background-color: #febb02; /* Highlight color on hover */
+    color: #001228;
+    transform: translateY(-2px); /* Lift effect on hover */
 }
-.RegisterLink{
-    color:#428bd0;
+
+.auth-Register {
     font-size: 14px;
+    margin-top: 10px;
+    color: #ffffff;
 }
-.error{
-    color: rgb(193, 30, 30)
+
+.RegisterLink {
+    color: #febb02;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.RegisterLink:hover {
+    color: #ffffff;
+}
+
+.error {
+    color: rgb(193, 30, 30);
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .login {
+        padding: 20px; /* Reduced padding for smaller screens */
+    }
+
+    .Title {
+        font-size: 28px; /* Adjusted font size for mobile */
+    }
+
+    .loginButton, .loginInputs, .loginReFor {
+        width: 90%; /* Increased width for smaller screens */
+        max-width: 300px; /* Adjusted max width for better control */
+    }
+}
+
+@media (max-width: 480px) {
+    .Title {
+        font-size: 24px; /* Further adjusted font size for mobile */
+    }
+
+    .loginButton, .loginInputs, .loginReFor {
+        width: 100%; /* Full width for very small screens */
+    }
 }
