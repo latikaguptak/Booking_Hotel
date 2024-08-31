@@ -38,6 +38,9 @@ const Login = () => {
 
   return (
     <div className="login">
+      <Link className='logo' to="/">
+          <span className="logo">TheHotels.com</span>
+      </Link>
       <h2 className="Title">Login</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="loginInputs">

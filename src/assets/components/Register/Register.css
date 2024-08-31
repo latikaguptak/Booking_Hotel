@@ -8,7 +8,10 @@
     flex-direction: column;
     padding: 40px 20px;
     background-color: #001228; /* Dark background for consistency */
-    min-height: 100vh; /* Full viewport height for centered alignment */
+    max-height: 100vh; /* Full viewport height for centered alignment */
+}
+.logo{
+    text-decoration: none;
 }
 
 .regTitle {

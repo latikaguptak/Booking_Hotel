@@ -21,12 +21,14 @@
     justify-content: space-between;
     align-items: center;
   }
+  .logo_link{
+    text-decoration: none;
+  }
   
   .logo {
     font-size: 26px; /* Larger logo size for prominence */
     color: #febb02; /* Bright accent color for visibility */
     font-weight: 700;
-    text-decoration: none;
     letter-spacing: 1px; /* Slight letter spacing for a unique look */
     transition: color 0.3s ease; /* Smooth color transition on hover */
   }
@@ -51,6 +53,12 @@
     font-size: 14px; /* Consistent font size */
     font-weight: bold;
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+  }
+  .navUser{
+    margin-right: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #ffffff;
   }
   
   .navButton:hover {

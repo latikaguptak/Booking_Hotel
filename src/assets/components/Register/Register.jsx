@@ -31,6 +31,9 @@ const Register = () => {
 
   return (
     <div className='registerContainer'>
+      <Link className='logo' to="/">
+          <span className="logo">TheHotels.com</span>
+      </Link>
       <h1 className='regTitle'>Register</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className='regInputs'>

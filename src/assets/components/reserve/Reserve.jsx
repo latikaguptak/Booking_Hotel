@@ -3,6 +3,7 @@ import './Reserve.css';
 import useFetch from '../../hooks/useFetch';
 import { useContext, useState } from 'react';
 import { SearchContext } from '../../../context/SearchContext';
+import { toast } from 'react-toastify';
 
 const Reserve = ({ setOpen, hotelId }) => {
   const { data, loading, error } = useFetch(`hotels/room/${hotelId}`);
@@ -49,9 +50,11 @@ const Reserve = ({ setOpen, hotelId }) => {
       console.log('Selected Rooms:', selectedRooms);
       // Make API call to reserve rooms
       // await axios.post('/reserve', { rooms: selectedRooms });
+      toast.success("Reserved Successful", { autoClose: 5000 });
       setOpen(false);
     } catch (err) {
-      console.error('Reservation failed:', err);
+      toast.error(err.response?.data?.message || 'Reservation failed', { autoClose: 5000 });
+      // console.error('Reservation failed:', err);
     } finally {
       setIsReserving(false);
     }

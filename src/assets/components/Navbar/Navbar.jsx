@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
   const { user, dispatch } = useContext(AuthContext);
@@ -16,12 +17,13 @@ const Navbar = () => {
 
     // Redirect to login page
     navigate('/login');
+    toast.success("Logout Successful", { autoClose: 5000 });
   };
 
   return (
     <div className="navbar">
       <div className="navContainer">
-        <Link to="/">
+        <Link className="logo_link" to="/">
           <span className="logo">TheHotels.com</span>
         </Link>
         {user ? (

@@ -184,6 +184,9 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
+  .header__option-counter-number{
+    color:#333
+  }
   
   .header__option-counter-button:disabled {
     background-color: #ccc;

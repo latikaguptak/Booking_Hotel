@@ -78,7 +78,9 @@
     border-color: var(--highlight-color);
     box-shadow: 0 0 5px var(--highlight-color);
   }
-  
+  .datedesign{
+    color:#ffffff
+  }
   .lsOption {
     padding: 10px;
     background-color: #ffffff;
