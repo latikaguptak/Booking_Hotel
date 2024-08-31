@@ -26,7 +26,7 @@ const Featured = () => {
                 />
                 <div className='featuredTitle'>
                   <h1>{city}</h1>
-                  <h2>{data[index] ? `${data[index]} properties` : 'No properties available'}</h2>
+                  <h2>{data[index] ? `${data[index]} properties` : ''}</h2>
                 </div>
               </div>
             ))}

@@ -65,7 +65,7 @@ const List = () => {
 
             <div className='lsItem'>
               <label>Check-in-Date</label>
-              <span onClick={() => setOpenDate(!openDate)}>
+              <span className="datedesign"  onClick={() => setOpenDate(!openDate)}>
                 {date[0]?.startDate && date[0]?.endDate
                   ? `${safeFormatDate(date[0].startDate)} to ${safeFormatDate(date[0].endDate)}`
                   : "Select a date"}
