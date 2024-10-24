@@ -7,7 +7,6 @@ const App = () => {
     <div>
       <ToastContainer />
       <Outlet />
-      {/* Rest of your app components */}
     </div>
   );
 };
